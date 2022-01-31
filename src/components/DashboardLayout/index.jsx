@@ -17,7 +17,7 @@ import { FaChevronDown, FaUser } from "react-icons/fa";
 
 function DashboardLayout() {
   return (
-    <Grid h="100vh" gridTemplateColumns="200px 1fr">
+    <Grid h="100vh" gridTemplateColumns="240px 1fr">
       {/* side menu */}
       <Box bg="gray.50" py={8} px={4}>
         <Box fontWeight="800" fontSize="2xl" mb={8}>
