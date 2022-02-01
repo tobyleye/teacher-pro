@@ -36,6 +36,12 @@ function TestInformation({ onEditQuestions }) {
             </FormLabel>
             <Input bg="white" defaultValue="0" />
           </Box>
+          <Box mb={6}>
+            <FormLabel fontSize="md">
+              <Box>Duration</Box>
+            </FormLabel>
+            <Input bg="white" defaultValue="5:00" />
+          </Box>
           <Button
             type="submit"
             colorScheme="blue"
