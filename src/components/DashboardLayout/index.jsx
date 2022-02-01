@@ -15,8 +15,15 @@ import {
 } from "@chakra-ui/react";
 import { Outlet, Link } from "react-router-dom";
 import {  FaUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"
 
 function DashboardLayout() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate('/account/login')
+  }
+
   return (
     <Grid h="100vh" gridTemplateColumns="240px 1fr">
       {/* side menu */}
@@ -72,7 +79,7 @@ function DashboardLayout() {
                 <Text>johndoe@gmail.com</Text>
               </MenuButton>
               <MenuList>
-                <MenuItem>Logout</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </MenuList>
             </Menu>
           </Box>
