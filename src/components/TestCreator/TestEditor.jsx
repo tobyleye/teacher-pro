@@ -5,9 +5,9 @@ import QuestionForm from "./QuestionForm";
 
 function AddQuestionForm({ onAddQuestion }) {
   return (
-    <Box bg="gray.100" py={6} px={6} textAlign="center">
+    <Box bg="gray.100" py={8} px={6} rounded="md" textAlign="center">
       <Box display="flex" alignItems="center" justifyContent="center" mb={8}>
-        <Heading size="md" fontWeight={500} mr={2}>
+        <Heading size="md" fontWeight={600} mr={2}>
           Add Question
         </Heading>
         <AddIcon />
@@ -64,19 +64,16 @@ function TestEditor({ onGoBack }) {
 
       <AddQuestionForm onAddQuestion={onAddQuestion} />
 
-      <Box mb={4} />
+      <Box mb={10} />
 
       <Center>
-        <Button colorScheme="blue" isFullWidth maxW={400}>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignitems="center"
-            w="full"
-          >
-            <Box>Create Test</Box>
-            <AddIcon />
-          </Box>
+        <Button
+          colorScheme="blue"
+          isFullWidth
+          maxW={400}
+          rightIcon={<AddIcon />}
+        >
+          Create Test
         </Button>
       </Center>
     </Box>

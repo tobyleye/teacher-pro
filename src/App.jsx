@@ -22,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/account" element={<AccountLayout />}>
+            <Route index element={<Login />} />
             <Route index path="login" element={<Login />} />
             <Route index path="signup" element={<Register />} />
           </Route>

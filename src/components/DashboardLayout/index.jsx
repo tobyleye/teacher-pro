@@ -11,9 +11,10 @@ import {
   MenuItem,
   MenuButton,
   MenuList,
+  Link as StyledLink
 } from "@chakra-ui/react";
 import { Outlet, Link } from "react-router-dom";
-import { FaChevronDown, FaUser } from "react-icons/fa";
+import {  FaUser } from "react-icons/fa";
 
 function DashboardLayout() {
   return (
@@ -31,7 +32,7 @@ function DashboardLayout() {
         </Button>
 
         <Box mt={12}>
-          <Link to="tests">Tests</Link>
+          <StyledLink display="block" fontSize="lg" as={Link} width="100%" to="tests">Tests</StyledLink>
         </Box>
       </Box>
 

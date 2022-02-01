@@ -1,6 +1,6 @@
 import { Box, Text, Heading } from "@chakra-ui/react";
 import { useState } from "react";
-import TestInformation from "./TestInformationForm";
+import TestInformationForm from "./TestInformationForm";
 import TestEditor from "./TestEditor";
 
 export default function TestCreator() {
@@ -21,15 +21,15 @@ export default function TestCreator() {
           mb: 8,
         }}
       >
-        <Heading fontSize="22px" mb="2px">
+        <Heading fontSize="30px" mb="2px">
           Test creator
         </Heading>
-        <Text fontSize="sm" color="gray.600">
+        <Text fontSize="md" color="gray.600">
           Enter a name for your new test.
         </Text>
       </Box>
 
-      {step === 0 && <TestInformation onEditQuestions={nextStep} />}
+      {step === 0 && <TestInformationForm onEditQuestions={nextStep} />}
 
       {step === 1 && <TestEditor onGoBack={prevStep} />}
     </Box>
