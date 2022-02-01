@@ -10,7 +10,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import Option from "./Option";
 
-function QuestionEditor({}) {
+function QuestionEditor({index}) {
   const [question, setQuestion] = useState({
     type: null,
     text: "",
@@ -27,7 +27,7 @@ function QuestionEditor({}) {
             alignItems="center"
             mb={4}
           >
-            <Heading size="md">Question #1</Heading>
+            <Heading size="md">Question #{index+1}</Heading>
             <CloseButton />
           </Box>
           <Textarea

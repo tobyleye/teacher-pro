@@ -57,7 +57,7 @@ function TestEditor({ onGoBack }) {
       {questions.map((q, index) => {
         return (
           <Box mb={4}>
-            <QuestionForm key={index} question={q} />
+            <QuestionForm key={index} index={index} question={q} />
           </Box>
         );
       })}

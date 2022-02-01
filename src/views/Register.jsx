@@ -10,12 +10,22 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  let navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/d");
+  };
+
   return (
     <Box>
-        <Heading mb={4} size="lg" textAlign="center">Create new account</Heading>
-      <form>
+      <Heading mb={4} size="lg" textAlign="center">
+        Create new account
+      </Heading>
+      <form onSubmit={handleSubmit}>
         <VStack spacing={5}>
           <FormControl isRequired>
             <FormLabel htmlFor="fullname">Fullname</FormLabel>
