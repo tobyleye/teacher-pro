@@ -1,7 +1,7 @@
 import { Box, Input, IconButton, CloseButton } from "@chakra-ui/react";
-import {  CheckIcon } from "@chakra-ui/icons";
+import { CheckIcon } from "@chakra-ui/icons";
 
-function Option({ option, index }) {
+function Option({ value, index, onChange, isAnswer, onSelectAnswer }) {
   return (
     <Box>
       <Box
@@ -15,15 +15,21 @@ function Option({ option, index }) {
       >
         <Box>
           <Input
-            value={option}
+            value={value}
             border="none"
             _focus={{
               border: "none",
             }}
             placeholder={`Option ` + (index + 1)}
+            onChange={(e) => onChange(index, e.target.value)}
           />
         </Box>
-        <IconButton my={1} icon={<CheckIcon />} />
+        <IconButton
+          my={1}
+          icon={<CheckIcon />}
+          onClick={() => onSelectAnswer(isAnswer ? null : value)}
+          colorScheme={isAnswer?'green': 'gray'}
+        />
         <CloseButton
           flexShrink="0"
           bg="white"
@@ -39,4 +45,4 @@ function Option({ option, index }) {
   );
 }
 
-export default Option
+export default Option;
