@@ -2,6 +2,7 @@ import { Box, Text, Heading } from "@chakra-ui/react";
 import { useState } from "react";
 import TestInformationForm from "./TestInformationForm";
 import TestEditor from "./TestEditor";
+import { StateProvider } from "./StateProvider";
 
 export default function TestCreator() {
   const [step, setStep] = useState(0);
@@ -29,9 +30,10 @@ export default function TestCreator() {
         </Text>
       </Box>
 
-      {step === 0 && <TestInformationForm onEditQuestions={nextStep} />}
-
-      {step === 1 && <TestEditor onGoBack={prevStep} />}
+      <StateProvider>
+        {step === 0 && <TestInformationForm onEditQuestions={nextStep} />}
+        {step === 1 && <TestEditor onGoBack={prevStep} />}
+      </StateProvider>
     </Box>
   );
 }

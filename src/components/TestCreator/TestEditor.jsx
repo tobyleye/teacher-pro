@@ -1,7 +1,74 @@
-import { Box, Heading, Button, Grid, Center } from "@chakra-ui/react";
-import { AddIcon, ArrowBackIcon, CloseIcon, CheckIcon } from "@chakra-ui/icons";
-import { useState } from "react";
+import { Box, Heading, Button, Grid, Center, useToast } from "@chakra-ui/react";
+import { AddIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import QuestionForm from "./QuestionForm";
+import { useStateProvider } from "./StateProvider";
+
+function TestEditor({ onGoBack }) {
+  const { state, dispatch } = useStateProvider();
+
+  const { questions } = state;
+  const toast = useToast();
+
+  const onAddQuestion = (questionType) => {
+    if (questions.length >= 10) {
+      toast({
+        description:
+          "Sorry you can only add up to 10 questions, to add more kindly consider becoming a premium member",
+        status: "error",
+      });
+      return;
+    }
+
+    let question = {
+      type: questionType,
+      text: "",
+      options: Array(3).fill(""),
+      answer: null,
+    };
+
+    dispatch({
+      type: "addNewQuestion",
+      payload: question,
+    });
+  };
+
+  return (
+    <Box>
+      <Box as="header" mb={4}>
+        <Button variant="link" leftIcon={<ArrowBackIcon />} onClick={onGoBack}>
+          Go back to test information
+        </Button>
+      </Box>
+
+      {questions.map((question, index) => {
+        return (
+          <Box mb={4} key={index}>
+            <QuestionForm
+              index={index}
+              question={question}
+              dispatch={dispatch}
+            />
+          </Box>
+        );
+      })}
+
+      <AddQuestionForm onAddQuestion={onAddQuestion} />
+
+      <Box mb={10} />
+
+      <Center>
+        <Button
+          colorScheme="blue"
+          isFullWidth
+          maxW={400}
+          rightIcon={<AddIcon />}
+        >
+          Create Test
+        </Button>
+      </Center>
+    </Box>
+  );
+}
 
 function AddQuestionForm({ onAddQuestion }) {
   return (
@@ -30,52 +97,6 @@ function AddQuestionForm({ onAddQuestion }) {
           Multiple correct answer
         </Button>
       </Grid>
-    </Box>
-  );
-}
-
-function TestEditor({ onGoBack }) {
-  const [questions, setQuestions] = useState([]);
-
-  const onAddQuestion = (questionType) => {
-    let newQuestion = {
-      type: questionType,
-      text: "",
-      options: Array(3).fill(""),
-    };
-    setQuestions((qs) => qs.concat(newQuestion));
-  };
-
-  return (
-    <Box>
-      <Box as="header" mb={4}>
-        <Button variant="link" leftIcon={<ArrowBackIcon />} onClick={onGoBack}>
-          Go back to test information
-        </Button>
-      </Box>
-
-      {questions.map((q, index) => {
-        return (
-          <Box mb={4}>
-            <QuestionForm key={index} index={index} question={q} />
-          </Box>
-        );
-      })}
-
-      <AddQuestionForm onAddQuestion={onAddQuestion} />
-
-      <Box mb={10} />
-
-      <Center>
-        <Button
-          colorScheme="blue"
-          isFullWidth
-          maxW={400}
-          rightIcon={<AddIcon />}
-        >
-          Create Test
-        </Button>
-      </Center>
     </Box>
   );
 }
